@@ -4,5 +4,14 @@ import DashboardLayout from "./DashboardLayout";
 import ListItem from "./ListItem";
 import Datatable from "./Datatable";
 import Breadcrumb from "./Breadcrumb";
+import UserLayout from "./UserLayout";
 
-export { Breadcrumb, Datatable, Navbar, Sidenav, DashboardLayout, ListItem };
+export {
+  UserLayout,
+  Breadcrumb,
+  Datatable,
+  Navbar,
+  Sidenav,
+  DashboardLayout,
+  ListItem,
+};
