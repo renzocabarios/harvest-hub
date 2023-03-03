@@ -57,7 +57,7 @@ function Sidenav(props) {
           {links.map((e) => {
             return (
               <div key={generateKey(5)}>
-                <ListItem title={e.title} link={e.link} />
+                <ListItem title={e.title} link={e.link} icon={e.icon} />
                 <Divider sx={{ my: 1 }} />
               </div>
             );
