@@ -8,8 +8,15 @@ import {
   Box,
   Button,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function AdminCreateUser() {
+  const navigate = useNavigate();
+
+  const userCreated = () => {
+    navigate(`/dashboard/users`);
+  };
+
   return (
     <>
       <DashboardLayout>
@@ -90,7 +97,11 @@ function AdminCreateUser() {
           </Grid>
           <Grid item xs={12}>
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <Button variant="contained" sx={{ mt: 3, ml: 1 }}>
+              <Button
+                onClick={userCreated}
+                variant="contained"
+                sx={{ mt: 3, ml: 1 }}
+              >
                 Submit
               </Button>
             </Box>
