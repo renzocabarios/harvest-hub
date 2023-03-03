@@ -1,11 +1,11 @@
 import * as React from "react";
-import { DashboardLayout, Datatable } from "@/component";
+import { DashboardLayout, Datatable, Breadcrumb } from "@/component";
 import { useNavigate } from "react-router-dom";
 
 function CustomerTransaction() {
   const navigate = useNavigate();
   const headers = ["ID", "Approved", "Confirmed", "Customer_id"];
-  const keys = ["_id", "Approved", "", "Customer_id"];
+  const keys = ["_id", "Approved", "Confirmed", "Customer_id"];
 
   const [data, setData] = React.useState([
     {
@@ -62,6 +62,7 @@ function CustomerTransaction() {
   return (
     <>
       <DashboardLayout>
+        <Breadcrumb />
         <Datatable
           headers={headers}
           keys={keys}

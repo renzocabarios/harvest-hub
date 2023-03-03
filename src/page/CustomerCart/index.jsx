@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DashboardLayout, Datatable } from "@/component";
+import { DashboardLayout, Datatable, Breadcrumb } from "@/component";
 import { useNavigate } from "react-router-dom";
 
 function CustomerCartLine() {
@@ -52,6 +52,7 @@ function CustomerCartLine() {
   return (
     <>
       <DashboardLayout>
+        <Breadcrumb />
         <Datatable
           headers={headers}
           keys={keys}
