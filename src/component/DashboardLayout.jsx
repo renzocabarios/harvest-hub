@@ -6,6 +6,10 @@ import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Navbar from "./Navbar";
 import Sidenav from "./Sidenav";
+import CategoryIcon from "@mui/icons-material/Category";
+import PersonIcon from "@mui/icons-material/Person";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import NaturePeopleIcon from "@mui/icons-material/NaturePeople";
 
 const mdTheme = createTheme();
 
@@ -13,9 +17,22 @@ function DashboardLayout(props) {
   const {
     children,
     links = [
-      { title: "Users", link: "/dashboard/users" },
-      { title: "Customers", link: "/dashboard/customers" },
-      { title: "Farmers", link: "/dashboard/farmers" },
+      { title: "Users", link: "/dashboard/users", icon: <PeopleAltIcon /> },
+      {
+        title: "Customers",
+        link: "/dashboard/customers",
+        icon: <PersonIcon />,
+      },
+      {
+        title: "Farmers",
+        link: "/dashboard/farmers",
+        icon: <NaturePeopleIcon />,
+      },
+      {
+        title: "Products",
+        link: "/dashboard/products",
+        icon: <CategoryIcon />,
+      },
     ],
   } = props;
   const [isOpen, setIsOpen] = React.useState(false);
