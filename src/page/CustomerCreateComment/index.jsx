@@ -10,11 +10,11 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-function AdminCreateUser() {
+function CustomerCreateComment() {
   const navigate = useNavigate();
 
-  const userCreated = () => {
-    navigate(`/dashboard/users`);
+  const commentCreated = () => {
+    navigate(`/dashboard/comments`);
   };
 
   return (
@@ -22,15 +22,15 @@ function AdminCreateUser() {
       <DashboardLayout>
         <Breadcrumb />
         <Typography variant="h6" gutterBottom>
-          Create User
+          Create Comment
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <TextField
               required
-              id="firstName"
-              name="firstName"
-              label="First name"
+              id="Name"
+              name="Name"
+              label="Name"
               fullWidth
               autoComplete="given-name"
               variant="standard"
@@ -39,66 +39,55 @@ function AdminCreateUser() {
           <Grid item xs={12} sm={6}>
             <TextField
               required
-              id="lastName"
-              name="lastName"
-              label="Last name"
+              id="Description"
+              name="Description"
+              label="Description"
               fullWidth
               autoComplete="family-name"
               variant="standard"
             />
           </Grid>
+
           <Grid item xs={12}>
             <TextField
-              margin="normal"
               required
+              id="rate"
+              name="rate"
+              label="Rate"
               fullWidth
-              id="type"
-              label="Account Type"
+              autoComplete="family-name"
               variant="standard"
-              value="admin"
               select
             >
-              <MenuItem value="admin">Admin</MenuItem>
-              <MenuItem value="farmer">Farmer</MenuItem>
-              <MenuItem value="customer">Customer</MenuItem>
+              {[1, 2, 3, 4, 5].map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
             </TextField>
           </Grid>
 
           <Grid item xs={12}>
             <TextField
+              margin="normal"
               required
-              id="email"
-              name="email"
-              label="Email"
               fullWidth
-              autoComplete="personal email"
+              id="Customer_id"
+              label="Customer"
               variant="standard"
-            />
+              value="1"
+              select
+            >
+              <MenuItem value="1">John Doe</MenuItem>
+              <MenuItem value="2">Foo Bar</MenuItem>
+              <MenuItem value="3">Lorem Ipsum</MenuItem>
+            </TextField>
           </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="password"
-              name="password"
-              label="Password"
-              fullWidth
-              autoComplete="secret password"
-              variant="standard"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="confirmPassword"
-              name="confirmPassword"
-              label="Confirm Password"
-              fullWidth
-              autoComplete="confirm secret password"
-              variant="standard"
-            />
-          </Grid>
+
           <Grid item xs={12}>
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
               <Button
-                onClick={userCreated}
+                onClick={commentCreated}
                 variant="contained"
                 sx={{ mt: 3, ml: 1 }}
               >
@@ -112,4 +101,4 @@ function AdminCreateUser() {
   );
 }
 
-export default AdminCreateUser;
+export default CustomerCreateComment;

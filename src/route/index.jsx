@@ -1,6 +1,5 @@
 import { useRoutes, Navigate } from "react-router-dom";
 import {
-  Home,
   Login,
   Register,
   Admin,
@@ -9,6 +8,18 @@ import {
   AdminFarmer,
   AdminCreateUser,
   FarmerProfile,
+  FarmerProduct,
+  CustomerComment,
+  CustomerCart,
+  CustomerTransaction,
+  CustomerTransactionLine,
+  CustomerCartLine,
+  FarmerCreateProduct,
+  CustomerCreateComment,
+  CustomerCreateCart,
+  CustomerCreateCartLine,
+  CustomerCreateTransaction,
+  CustomerCreateTransactionLine,
 } from "@/page";
 
 export function Router() {
@@ -25,10 +36,7 @@ export function Router() {
       path: "/register",
       element: <Register />,
     },
-    {
-      path: "/home",
-      element: <Home />,
-    },
+
     {
       path: "/dashboard",
       element: <Admin />,
@@ -52,6 +60,54 @@ export function Router() {
     {
       path: "/farmer",
       element: <FarmerProfile />,
+    },
+    {
+      path: "dashboard/products",
+      element: <FarmerProduct />,
+    },
+    {
+      path: "dashboard/comments",
+      element: <CustomerComment />,
+    },
+    {
+      path: "dashboard/carts",
+      element: <CustomerCart />,
+    },
+    {
+      path: "dashboard/transactions",
+      element: <CustomerTransaction />,
+    },
+    {
+      path: "dashboard/transaction-line",
+      element: <CustomerTransactionLine />,
+    },
+    {
+      path: "dashboard/cart-line",
+      element: <CustomerCartLine />,
+    },
+    {
+      path: "/dashboard/products/create",
+      element: <FarmerCreateProduct />,
+    },
+    {
+      path: "/dashboard/comments/create",
+      element: <CustomerCreateComment />,
+    },
+    {
+      path: "/dashboard/carts/create",
+      element: <CustomerCreateCart />,
+    },
+    {
+      path: "/dashboard/cart-line/create",
+      element: <CustomerCreateCartLine />,
+    },
+    {
+      path: "/dashboard/transactions/create",
+      element: <CustomerCreateTransaction />,
+    },
+    {
+      path: "/dashboard/transaction-line/create",
+      element: <CustomerCreateTransactionLine />,
     },
   ]);
 }

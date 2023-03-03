@@ -6,6 +6,16 @@ import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Navbar from "./Navbar";
 import Sidenav from "./Sidenav";
+import CategoryIcon from "@mui/icons-material/Category";
+import PersonIcon from "@mui/icons-material/Person";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import NaturePeopleIcon from "@mui/icons-material/NaturePeople";
+import CommentIcon from "@mui/icons-material/Comment";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
+import PaidIcon from "@mui/icons-material/Paid";
+import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
+import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 
 const mdTheme = createTheme();
 
@@ -13,9 +23,52 @@ function DashboardLayout(props) {
   const {
     children,
     links = [
-      { title: "Users", link: "/dashboard/users" },
-      { title: "Customers", link: "/dashboard/customers" },
-      { title: "Farmers", link: "/dashboard/farmers" },
+      { title: "Users", link: "/dashboard/users", icon: <PeopleAltIcon /> },
+      {
+        title: "Customers",
+        link: "/dashboard/customers",
+        icon: <PersonIcon />,
+      },
+      {
+        title: "Farmers",
+        link: "/dashboard/farmers",
+        icon: <NaturePeopleIcon />,
+      },
+      {
+        title: "Products",
+        link: "/dashboard/products",
+        icon: <CategoryIcon />,
+      },
+      {
+        title: "Comments",
+        link: "/dashboard/comments",
+        icon: <CommentIcon />,
+      },
+      {
+        title: "Cart",
+        link: "/dashboard/carts",
+        icon: <ShoppingCartIcon />,
+      },
+      {
+        title: "Cart Line",
+        link: "/dashboard/cart-line",
+        icon: <ShoppingCartCheckoutIcon />,
+      },
+      {
+        title: "Transaction",
+        link: "/dashboard/transactions",
+        icon: <PaidIcon />,
+      },
+      {
+        title: "Transaction Line",
+        link: "/dashboard/transaction-line",
+        icon: <ReceiptLongIcon />,
+      },
+      {
+        title: "Charts",
+        link: "/dashboard",
+        icon: <LeaderboardIcon />,
+      },
     ],
   } = props;
   const [isOpen, setIsOpen] = React.useState(false);

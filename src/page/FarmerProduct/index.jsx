@@ -1,49 +1,52 @@
 import * as React from "react";
 import { DashboardLayout, Datatable, Breadcrumb } from "@/component";
-import { useGetUsersQuery } from "@/state/api/reducer";
 import { useNavigate } from "react-router-dom";
 
-function AdminUser() {
+function FarmerProduct() {
   const navigate = useNavigate();
-  const { isLoading } = useGetUsersQuery();
-  const headers = ["ID", "First Name", "Last Name", "Email", "Type"];
-  const keys = ["_id", "firstName", "lastName", "email", "type"];
+  const headers = ["ID", "Name", "Description", "Price", "Stock", "Farmer_id"];
+  const keys = ["_id", "Name", "Description", "Price", "Stock", "Farmer_id"];
 
   const [data, setData] = React.useState([
     {
       _id: "_id_1",
-      firstName: "firstName",
-      lastName: "lastName",
-      email: "email",
-      type: "type",
+      Name: "Name",
+      Description: "Description",
+      Price: "Price",
+      Stock: "Stock",
+      Farmer_id: "Farmer_id",
     },
     {
       _id: "_id_2",
-      firstName: "firstName",
-      lastName: "lastName",
-      email: "email",
-      type: "type",
+      Name: "Name",
+      Description: "Description",
+      Price: "Price",
+      Stock: "Stock",
+      Farmer_id: "Farmer_id",
     },
     {
       _id: "_id_3",
-      firstName: "firstName",
-      lastName: "lastName",
-      email: "email",
-      type: "type",
+      Name: "Name",
+      Description: "Description",
+      Price: "Price",
+      Stock: "Stock",
+      Farmer_id: "Farmer_id",
     },
     {
       _id: "_id_4",
-      firstName: "firstName",
-      lastName: "lastName",
-      email: "email",
-      type: "type",
+      Name: "Name",
+      Description: "Description",
+      Price: "Price",
+      Stock: "Stock",
+      Farmer_id: "Farmer_id",
     },
     {
       _id: "_id_5",
-      firstName: "firstName",
-      lastName: "lastName",
-      email: "email",
-      type: "type",
+      Name: "Name",
+      Description: "Description",
+      Price: "Price",
+      Stock: "Stock",
+      Farmer_id: "Farmer_id",
     },
   ]);
 
@@ -52,7 +55,7 @@ function AdminUser() {
   };
 
   const handleEdit = (_id) => {
-    navigate(`/dashboard/users/edit/${_id}`);
+    navigate(`/dashboard/product/edit/${_id}`);
   };
 
   const actions = [
@@ -82,4 +85,4 @@ function AdminUser() {
   );
 }
 
-export default AdminUser;
+export default FarmerProduct;

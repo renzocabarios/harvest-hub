@@ -30,7 +30,7 @@ function Login() {
   };
 
   const handleSubmit = () => {
-    navigate(`/home`);
+    navigate(`/dashboard`);
   };
 
   const handleRegister = () => {

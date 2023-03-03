@@ -1,60 +1,67 @@
 import * as React from "react";
 import { DashboardLayout, Datatable } from "@/component";
-import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
 function AdminFarmer() {
-  const headers = ["ID", "First Name", "Last Name", "Email", "Type"];
-  const keys = ["_id", "firstName", "lastName", "email", "type"];
+  const navigate = useNavigate();
+  const headers = ["ID", "First Name", "Last Name", "Email"];
+  const keys = ["_id", "firstName", "lastName", "email"];
+
+  const [data, setData] = React.useState([
+    {
+      _id: "_id_1",
+      firstName: "firstName",
+      lastName: "lastName",
+      email: "email",
+    },
+    {
+      _id: "_id_2",
+      firstName: "firstName",
+      lastName: "lastName",
+      email: "email",
+    },
+    {
+      _id: "_id_3",
+      firstName: "firstName",
+      lastName: "lastName",
+      email: "email",
+    },
+    {
+      _id: "_id_4",
+      firstName: "firstName",
+      lastName: "lastName",
+      email: "email",
+    },
+    {
+      _id: "_id_5",
+      firstName: "firstName",
+      lastName: "lastName",
+      email: "email",
+    },
+  ]);
+
+  const handleDelete = (_id) => {
+    setData(data.filter((item) => item._id !== _id));
+  };
+
+  const handleEdit = (_id) => {
+    navigate(`/dashboard/farmers/edit/${_id}`);
+  };
+
   const actions = [
     {
-      onClick: (_id) => {},
+      onClick: handleEdit,
       title: "Edit",
     },
-    { onClick: (_id) => {}, title: "Delete" },
-  ];
-
-  const data = [
     {
-      _id: "_id",
-      firstName: "firstName",
-      lastName: "lastName",
-      email: "email",
-      type: "type",
-    },
-    {
-      _id: "_id",
-      firstName: "firstName",
-      lastName: "lastName",
-      email: "email",
-      type: "type",
-    },
-    {
-      _id: "_id",
-      firstName: "firstName",
-      lastName: "lastName",
-      email: "email",
-      type: "type",
-    },
-    {
-      _id: "_id",
-      firstName: "firstName",
-      lastName: "lastName",
-      email: "email",
-      type: "type",
-    },
-    {
-      _id: "_id",
-      firstName: "firstName",
-      lastName: "lastName",
-      email: "email",
-      type: "type",
+      onClick: handleDelete,
+      title: "Delete",
     },
   ];
 
   return (
     <>
       <DashboardLayout>
-        <Button onClick={() => {}}>Add User</Button>
         <Datatable
           headers={headers}
           keys={keys}

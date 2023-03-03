@@ -10,11 +10,11 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-function AdminCreateUser() {
+function FarmerCreateProduct() {
   const navigate = useNavigate();
 
-  const userCreated = () => {
-    navigate(`/dashboard/users`);
+  const productCreated = () => {
+    navigate(`/dashboard/products`);
   };
 
   return (
@@ -22,15 +22,15 @@ function AdminCreateUser() {
       <DashboardLayout>
         <Breadcrumb />
         <Typography variant="h6" gutterBottom>
-          Create User
+          Create Product
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <TextField
               required
-              id="firstName"
-              name="firstName"
-              label="First name"
+              id="Name"
+              name="Name"
+              label="Name"
               fullWidth
               autoComplete="given-name"
               variant="standard"
@@ -39,9 +39,32 @@ function AdminCreateUser() {
           <Grid item xs={12} sm={6}>
             <TextField
               required
-              id="lastName"
-              name="lastName"
-              label="Last name"
+              id="Description"
+              name="Description"
+              label="Description"
+              fullWidth
+              autoComplete="family-name"
+              variant="standard"
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <TextField
+              required
+              id="price"
+              name="price"
+              label="Price"
+              fullWidth
+              autoComplete="family-name"
+              variant="standard"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              id="stock"
+              name="stock"
+              label="Stock"
               fullWidth
               autoComplete="family-name"
               variant="standard"
@@ -52,53 +75,22 @@ function AdminCreateUser() {
               margin="normal"
               required
               fullWidth
-              id="type"
-              label="Account Type"
+              id="Farmer_id"
+              label="Farmer"
               variant="standard"
-              value="admin"
+              value="1"
               select
             >
-              <MenuItem value="admin">Admin</MenuItem>
-              <MenuItem value="farmer">Farmer</MenuItem>
-              <MenuItem value="customer">Customer</MenuItem>
+              <MenuItem value="1">John Doe</MenuItem>
+              <MenuItem value="2">Foo Bar</MenuItem>
+              <MenuItem value="3">Lorem Ipsum</MenuItem>
             </TextField>
           </Grid>
 
           <Grid item xs={12}>
-            <TextField
-              required
-              id="email"
-              name="email"
-              label="Email"
-              fullWidth
-              autoComplete="personal email"
-              variant="standard"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="password"
-              name="password"
-              label="Password"
-              fullWidth
-              autoComplete="secret password"
-              variant="standard"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="confirmPassword"
-              name="confirmPassword"
-              label="Confirm Password"
-              fullWidth
-              autoComplete="confirm secret password"
-              variant="standard"
-            />
-          </Grid>
-          <Grid item xs={12}>
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
               <Button
-                onClick={userCreated}
+                onClick={productCreated}
                 variant="contained"
                 sx={{ mt: 3, ml: 1 }}
               >
@@ -112,4 +104,4 @@ function AdminCreateUser() {
   );
 }
 
-export default AdminCreateUser;
+export default FarmerCreateProduct;
