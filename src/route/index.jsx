@@ -1,6 +1,5 @@
 import { useRoutes, Navigate } from "react-router-dom";
 import {
-  Home,
   Login,
   Register,
   Admin,
@@ -9,6 +8,12 @@ import {
   AdminFarmer,
   AdminCreateUser,
   FarmerProfile,
+  FarmerProduct,
+  CustomerComment,
+  CustomerCart,
+  CustomerTransaction,
+  CustomerTransactionLine,
+  CustomerCartLine,
 } from "@/page";
 
 export function Router() {
@@ -25,10 +30,7 @@ export function Router() {
       path: "/register",
       element: <Register />,
     },
-    {
-      path: "/home",
-      element: <Home />,
-    },
+
     {
       path: "/dashboard",
       element: <Admin />,
@@ -52,6 +54,30 @@ export function Router() {
     {
       path: "/farmer",
       element: <FarmerProfile />,
+    },
+    {
+      path: "dashboard/products",
+      element: <FarmerProduct />,
+    },
+    {
+      path: "dashboard/comments",
+      element: <CustomerComment />,
+    },
+    {
+      path: "dashboard/carts",
+      element: <CustomerCart />,
+    },
+    {
+      path: "dashboard/transaction",
+      element: <CustomerTransaction />,
+    },
+    {
+      path: "dashboard/transaction-line",
+      element: <CustomerTransactionLine />,
+    },
+    {
+      path: "dashboard/cart-line",
+      element: <CustomerCartLine />,
     },
   ]);
 }
