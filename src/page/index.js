@@ -18,8 +18,10 @@ import CustomerCreateCart from "./CustomerCreateCart";
 import CustomerCreateCartLine from "./CustomerCreateCartLine";
 import CustomerCreateTransaction from "./CustomerCreateTransaction";
 import CustomerCreateTransactionLine from "./CustomerCreateTransactionLine";
+import AdminAdmins from "./AdminAdmins";
 
 export {
+  AdminAdmins,
   FarmerProfile,
   Login,
   Register,

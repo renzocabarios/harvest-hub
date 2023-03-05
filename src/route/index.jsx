@@ -20,10 +20,15 @@ import {
   CustomerCreateCartLine,
   CustomerCreateTransaction,
   CustomerCreateTransactionLine,
+  AdminAdmins,
 } from "@/page";
 
 export function Router() {
   return useRoutes([
+    {
+      path: "/dashboard/admins",
+      element: <AdminAdmins />,
+    },
     {
       path: "/",
       element: <Navigate to="/login" />,
