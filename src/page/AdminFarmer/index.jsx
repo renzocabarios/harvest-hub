@@ -1,51 +1,17 @@
 import * as React from "react";
 import { DashboardLayout, Datatable } from "@/component";
-import { useNavigate } from "react-router-dom";
+import { useGetFarmersQuery } from "@/state/api/reducer";
 
 function AdminFarmer() {
-  const navigate = useNavigate();
   const headers = ["ID", "First Name", "Last Name", "Email"];
-  const keys = ["_id", "firstName", "lastName", "email"];
+  const keys = ["id", "user.first_name", "user.last_name", "user.email"];
 
-  const [data, setData] = React.useState([
-    {
-      _id: "_id_1",
-      firstName: "firstName",
-      lastName: "lastName",
-      email: "email",
-    },
-    {
-      _id: "_id_2",
-      firstName: "firstName",
-      lastName: "lastName",
-      email: "email",
-    },
-    {
-      _id: "_id_3",
-      firstName: "firstName",
-      lastName: "lastName",
-      email: "email",
-    },
-    {
-      _id: "_id_4",
-      firstName: "firstName",
-      lastName: "lastName",
-      email: "email",
-    },
-    {
-      _id: "_id_5",
-      firstName: "firstName",
-      lastName: "lastName",
-      email: "email",
-    },
-  ]);
+  const getFarmers = useGetFarmersQuery();
 
-  const handleDelete = (_id) => {
-    setData(data.filter((item) => item._id !== _id));
-  };
+  const handleDelete = (_id) => {};
 
   const handleEdit = (_id) => {
-    navigate(`/dashboard/farmers/edit/${_id}`);
+    // navigate(`/dashboard/farmers/edit/${_id}`);
   };
 
   const actions = [
@@ -59,6 +25,10 @@ function AdminFarmer() {
     },
   ];
 
+  if (getFarmers.isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <DashboardLayout>
@@ -66,8 +36,7 @@ function AdminFarmer() {
           headers={headers}
           keys={keys}
           actions={actions}
-          hasActions={true}
-          data={data}
+          data={getFarmers.data?.data}
         />
       </DashboardLayout>
     </>
