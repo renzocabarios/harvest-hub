@@ -17,11 +17,21 @@ export const api = createApi({
         method: "POST",
         body: payload,
       }),
+    deleteUser: builder.mutation({
+      query: (id) => ({
+        url: `/user/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["User"],
     }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetUserByTypeQuery, useGetUsersQuery, useAddUserMutation } =
-  api;
+export const {
+  useGetUserByTypeQuery,
+  useGetUsersQuery,
+  useAddUserMutation,
+  useDeleteUserMutation,
+} = api;
