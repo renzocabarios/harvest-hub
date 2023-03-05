@@ -26,11 +26,17 @@ export const api = createApi({
         url: `/user/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["User"],
+      invalidatesTags: ["Admin", "User"],
     }),
     getAdmins: builder.query({
       query: () => `admin`,
-      providesTags: ["Admin"],
+    }),
+    deleteAdmins: builder.mutation({
+      query: (id) => ({
+        url: `/admin/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Admin", "User"],
     }),
   }),
 });
@@ -43,4 +49,5 @@ export const {
   useAddUserMutation,
   useDeleteUserMutation,
   useGetAdminsQuery,
+  useDeleteAdminsMutation,
 } = api;
