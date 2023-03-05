@@ -9,11 +9,19 @@ export const api = createApi({
       query: () => `user`,
     }),
     getUserByType: builder.query({
-      query: (type) => `users?find={"type":"${type}"}`,
+      query: (type) => `user?find={"type":"${type}"}`,
+    }),
+    addUser: builder.mutation({
+      query: (payload) => ({
+        url: "/user",
+        method: "POST",
+        body: payload,
+      }),
     }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetUserByTypeQuery, useGetUsersQuery } = api;
+export const { useGetUserByTypeQuery, useGetUsersQuery, useAddUserMutation } =
+  api;
