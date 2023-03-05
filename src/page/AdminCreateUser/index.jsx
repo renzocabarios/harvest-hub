@@ -36,7 +36,6 @@ function AdminCreateUser() {
   return (
     <>
       <DashboardLayout>
-        <Breadcrumb />
         <Typography variant="h6" gutterBottom>
           Create User
         </Typography>
