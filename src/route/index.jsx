@@ -8,7 +8,7 @@ import {
   AdminFarmer,
   AdminCreateUser,
   FarmerProfile,
-  FarmerProduct,
+  AdminProduct,
   CustomerComment,
   CustomerCart,
   CustomerTransaction,
@@ -68,7 +68,7 @@ export function Router() {
     },
     {
       path: "dashboard/products",
-      element: <FarmerProduct />,
+      element: <AdminProduct />,
     },
     {
       path: "dashboard/comments",

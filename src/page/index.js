@@ -6,7 +6,7 @@ import AdminCustomer from "./AdminCustomer";
 import AdminFarmer from "./AdminFarmer";
 import AdminCreateUser from "./AdminCreateUser";
 import FarmerProfile from "./FarmerProfile";
-import FarmerProduct from "./FarmerProduct";
+import AdminProduct from "./AdminProduct";
 import CustomerComment from "./CustomerComment";
 import CustomerCart from "./CustomerCart";
 import CustomerTransaction from "./CustomerTransaction";
@@ -30,7 +30,7 @@ export {
   AdminCustomer,
   AdminFarmer,
   AdminCreateUser,
-  FarmerProduct,
+  AdminProduct,
   CustomerComment,
   CustomerCart,
   CustomerTransaction,

@@ -4,7 +4,7 @@ import { API_URL } from "../../env/index.js";
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
-  tagTypes: ["User", "Admin", "Customer"],
+  tagTypes: ["User", "Admin", "Customer", "Farmer", "Product"],
   endpoints: (builder) => ({
     getUsers: builder.query({
       query: () => `user`,
@@ -42,6 +42,14 @@ export const api = createApi({
       query: () => `customer`,
       providesTags: ["Customer"],
     }),
+    getFarmers: builder.query({
+      query: () => `farmer`,
+      providesTags: ["Farmer"],
+    }),
+    getProducts: builder.query({
+      query: () => `product`,
+      providesTags: ["Product"],
+    }),
   }),
 });
 
@@ -55,4 +63,6 @@ export const {
   useGetAdminsQuery,
   useDeleteAdminsMutation,
   useGetCustomersQuery,
+  useGetFarmersQuery,
+  useGetProductsQuery,
 } = api;
