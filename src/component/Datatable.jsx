@@ -72,7 +72,7 @@ export default function Datatable(props) {
                       <Button
                         key={generateKey(5)}
                         onClick={() => {
-                          action.onClick(row._id);
+                          action.onClick(row["id"]);
                         }}
                       >
                         {action.title}
