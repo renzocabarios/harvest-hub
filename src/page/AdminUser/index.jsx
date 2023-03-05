@@ -2,15 +2,18 @@ import * as React from "react";
 import { DashboardLayout, Datatable, Breadcrumb, Button } from "@/component";
 import { useGetUsersQuery } from "@/state/api/reducer";
 import { useNavigate } from "react-router-dom";
+import { useDeleteUserMutation } from "@/state/api/reducer";
 
 function AdminUser() {
   const navigate = useNavigate();
-  const { data, isLoading } = useGetUsersQuery();
+  const [deleteUser, deleteUserMutation] = useDeleteUserMutation();
+  const getUsersQuery = useGetUsersQuery();
+
   const headers = ["ID", "First Name", "Last Name", "Email", "Type"];
   const keys = ["id", "first_name", "last_name", "email", "type"];
 
-  const handleDelete = (_id) => {
-    // setData(data.filter((item) => item._id !== _id));
+  const handleDelete = (id) => {
+    deleteUser(id);
   };
 
   const handleEdit = (_id) => {
@@ -28,7 +31,7 @@ function AdminUser() {
     },
   ];
 
-  if (isLoading) {
+  if (getUsersQuery.isLoading || deleteUserMutation.isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -47,7 +50,7 @@ function AdminUser() {
           keys={keys}
           actions={actions}
           hasActions={true}
-          data={data.data}
+          data={getUsersQuery.data.data}
         />
       </DashboardLayout>
     </>
