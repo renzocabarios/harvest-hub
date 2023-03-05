@@ -31,13 +31,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function Datatable(props) {
-  const {
-    headers = [],
-    data = [],
-    keys = [],
-    hasActions = false,
-    actions = [],
-  } = props;
+  const { headers = [], data = [], keys = [], actions = [] } = props;
+
+  const hasActions = actions.length > 0;
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -55,34 +51,49 @@ export default function Datatable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((row) => (
-            <StyledTableRow key={generateKey(5)}>
-              {keys.map((e) => (
-                <StyledTableCell key={generateKey(5)} align="center">
-                  {row[e]}
-                </StyledTableCell>
-              ))}
-              {hasActions && (
-                <StyledTableCell align="center">
-                  <ButtonGroup
-                    variant="contained"
-                    aria-label="outlined primary button group"
-                  >
-                    {actions.map((action) => (
-                      <Button
-                        key={generateKey(5)}
-                        onClick={() => {
-                          action.onClick(row["id"]);
-                        }}
-                      >
-                        {action.title}
-                      </Button>
-                    ))}
-                  </ButtonGroup>
-                </StyledTableCell>
-              )}
-            </StyledTableRow>
-          ))}
+          {data.map((row) => {
+            return (
+              <StyledTableRow key={generateKey(5)}>
+                {keys.map((e) => {
+                  if (e.split(".").length > 1) {
+                    let tempValue = row;
+                    e.split(".").forEach((e) => {
+                      tempValue = tempValue[e];
+                    });
+                    return (
+                      <StyledTableCell key={generateKey(5)} align="center">
+                        {tempValue}
+                      </StyledTableCell>
+                    );
+                  }
+                  return (
+                    <StyledTableCell key={generateKey(5)} align="center">
+                      {row[e]}
+                    </StyledTableCell>
+                  );
+                })}
+                {hasActions > 0 && (
+                  <StyledTableCell align="center">
+                    <ButtonGroup
+                      variant="contained"
+                      aria-label="outlined primary button group"
+                    >
+                      {actions.map((action) => (
+                        <Button
+                          key={generateKey(5)}
+                          onClick={() => {
+                            action.onClick(row["id"]);
+                          }}
+                        >
+                          {action.title}
+                        </Button>
+                      ))}
+                    </ButtonGroup>
+                  </StyledTableCell>
+                )}
+              </StyledTableRow>
+            );
+          })}
         </TableBody>
       </Table>
     </TableContainer>
