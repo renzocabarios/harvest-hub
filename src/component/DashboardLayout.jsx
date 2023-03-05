@@ -6,6 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Navbar from "./Navbar";
 import Sidenav from "./Sidenav";
+import Breadcrumb from "./Breadcrumb";
 import CategoryIcon from "@mui/icons-material/Category";
 import PersonIcon from "@mui/icons-material/Person";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
@@ -103,6 +104,8 @@ function DashboardLayout(props) {
           >
             <Toolbar />
             <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+              <Breadcrumb />
+
               {children}
             </Container>
           </Box>
