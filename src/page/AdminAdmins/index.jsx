@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DashboardLayout, Datatable, Breadcrumb, Button } from "@/component";
+import { DashboardLayout, Datatable, Button } from "@/component";
 import { useNavigate } from "react-router-dom";
 import {
   useGetAdminsQuery,
@@ -39,7 +39,6 @@ function AdminAdmins() {
   return (
     <>
       <DashboardLayout>
-        <Breadcrumb />
         <Button
           title="Add User"
           onClick={() => {
