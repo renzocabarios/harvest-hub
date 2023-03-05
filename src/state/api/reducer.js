@@ -4,9 +4,11 @@ import { API_URL } from "../../env/index.js";
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
+  tagTypes: ["User"],
   endpoints: (builder) => ({
     getUsers: builder.query({
       query: () => `user`,
+      providesTags: ["User"],
     }),
     getUserByType: builder.query({
       query: (type) => `user?find={"type":"${type}"}`,
@@ -17,6 +19,8 @@ export const api = createApi({
         method: "POST",
         body: payload,
       }),
+      invalidatesTags: ["User"],
+    }),
     deleteUser: builder.mutation({
       query: (id) => ({
         url: `/user/${id}`,
