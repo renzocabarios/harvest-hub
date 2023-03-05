@@ -25,6 +25,11 @@ function DashboardLayout(props) {
     links = [
       { title: "Users", link: "/dashboard/users", icon: <PeopleAltIcon /> },
       {
+        title: "Admins",
+        link: "/dashboard/admins",
+        icon: <PersonIcon />,
+      },
+      {
         title: "Customers",
         link: "/dashboard/customers",
         icon: <PersonIcon />,
