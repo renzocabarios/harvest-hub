@@ -49,7 +49,6 @@ function AdminUser() {
           headers={headers}
           keys={keys}
           actions={actions}
-          hasActions={true}
           data={getUsersQuery.data.data}
         />
       </DashboardLayout>
