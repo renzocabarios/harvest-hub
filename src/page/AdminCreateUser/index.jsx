@@ -93,9 +93,9 @@ function AdminCreateUser() {
                 error={formik.touched.type && Boolean(formik.errors.type)}
                 helperText={formik.touched.type && formik.errors.type}
               >
-                <MenuItem value="admin">Admin</MenuItem>
+                <MenuItem value="Admin">Admin</MenuItem>
                 <MenuItem value="farmer">Farmer</MenuItem>
-                <MenuItem value="customer">Customer</MenuItem>
+                <MenuItem value="Customer">Customer</MenuItem>
               </TextField>
             </Grid>
 
