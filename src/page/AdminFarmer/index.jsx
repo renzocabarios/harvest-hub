@@ -2,17 +2,26 @@ import * as React from "react";
 import { DashboardLayout, Datatable } from "@/component";
 import { useGetFarmersQuery } from "@/state/api/reducer";
 
-function AdminFarmer() {
-  const headers = ["ID", "First Name", "Last Name", "Email"];
-  const keys = ["id", "user.first_name", "user.last_name", "user.email"];
+export default function () {
+  const headers = ["ID", "Full Name", "Email"];
+  const keys = [
+    {
+      key: "id",
+    },
+    {
+      key: "user.first_name",
+      operation: (value, row) => `${value} ${row.user.last_name}`,
+    },
+    {
+      key: "user.email",
+    },
+  ];
 
   const getFarmers = useGetFarmersQuery();
 
   const handleDelete = (_id) => {};
 
-  const handleEdit = (_id) => {
-    // navigate(`/dashboard/farmers/edit/${_id}`);
-  };
+  const handleEdit = (_id) => {};
 
   const actions = [
     {
@@ -42,5 +51,3 @@ function AdminFarmer() {
     </>
   );
 }
-
-export default AdminFarmer;
