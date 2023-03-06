@@ -10,6 +10,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { generateKey } from "../services/generateKey";
+import { splitKey, deconstruct, manipulate } from "../services/datatable";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -30,7 +31,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function Datatable(props) {
+export default function (props) {
   const { headers = [], data = [], keys = [], actions = [] } = props;
 
   const hasActions = actions.length > 0;
@@ -55,20 +56,19 @@ export default function Datatable(props) {
             return (
               <StyledTableRow key={generateKey(5)}>
                 {keys.map((e) => {
-                  if (e.split(".").length > 1) {
-                    let tempValue = row;
-                    e.split(".").forEach((e) => {
-                      tempValue = tempValue[e];
-                    });
-                    return (
-                      <StyledTableCell key={generateKey(5)} align="center">
-                        {tempValue}
-                      </StyledTableCell>
-                    );
-                  }
+                  const { key, operation } = e;
+                  const splitted = splitKey(key);
+                  const hasOperation = operation;
+                  let tempValue = row[key];
+
+                  if (splitted.length > 1)
+                    tempValue = deconstruct(splitted, row);
+
                   return (
                     <StyledTableCell key={generateKey(5)} align="center">
-                      {row[e]}
+                      {hasOperation
+                        ? manipulate(tempValue, row, hasOperation)
+                        : tempValue}
                     </StyledTableCell>
                   );
                 })}
