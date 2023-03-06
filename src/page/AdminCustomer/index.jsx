@@ -3,8 +3,6 @@ import { DashboardLayout, Datatable } from "@/component";
 import { useGetCustomersQuery } from "@/state/api/reducer";
 
 export default function () {
-  const getCustomers = useGetCustomersQuery();
-
   const headers = ["ID", "Full Name", "Email"];
   const keys = [
     {
@@ -18,6 +16,8 @@ export default function () {
       key: "user.email",
     },
   ];
+
+  const getCustomers = useGetCustomersQuery();
 
   const handleDelete = (_id) => {};
 
