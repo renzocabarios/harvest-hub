@@ -21,6 +21,8 @@ import {
   CustomerCreateTransaction,
   CustomerCreateTransactionLine,
   AdminAdmins,
+  FarmerProduct,
+  AdminCreateProduct,
   CustomerHome,
 } from "@/page";
 
@@ -97,7 +99,7 @@ export function Router() {
     },
     {
       path: "/dashboard/products/create",
-      element: <FarmerCreateProduct />,
+      element: <AdminCreateProduct />,
     },
     {
       path: "/dashboard/comments/create",
@@ -118,6 +120,14 @@ export function Router() {
     {
       path: "/dashboard/transaction-line/create",
       element: <CustomerCreateTransactionLine />,
+    },
+    {
+      path: "/farmer/products",
+      element: <FarmerProduct />,
+    },
+    {
+      path: "/farmer/products/create",
+      element: <FarmerCreateProduct />,
     },
   ]);
 }
