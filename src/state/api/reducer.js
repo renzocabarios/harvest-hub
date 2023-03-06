@@ -4,7 +4,15 @@ import { API_URL } from "../../env/index.js";
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
-  tagTypes: ["User", "Admin", "Customer", "Farmer", "Product", "Cart"],
+  tagTypes: [
+    "User",
+    "Admin",
+    "Customer",
+    "Farmer",
+    "Product",
+    "Cart",
+    "Transaction",
+  ],
   endpoints: (builder) => ({
     getUsers: builder.query({
       query: () => `user`,
@@ -54,6 +62,10 @@ export const api = createApi({
       query: () => `cart`,
       providesTags: ["Cart"],
     }),
+    getTransactions: builder.query({
+      query: () => `transaction`,
+      providesTags: ["Transaction"],
+    }),
   }),
 });
 
@@ -70,4 +82,5 @@ export const {
   useGetFarmersQuery,
   useGetProductsQuery,
   useGetCartsQuery,
+  useGetTransactionsQuery,
 } = api;

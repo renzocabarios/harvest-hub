@@ -9,7 +9,7 @@ import FarmerProfile from "./FarmerProfile";
 import AdminProduct from "./AdminProduct";
 import CustomerComment from "./CustomerComment";
 import AdminCart from "./AdminCart";
-import CustomerTransaction from "./CustomerTransaction";
+import AdminTransaction from "./AdminTransaction";
 import CustomerTransactionLine from "./CustomerTransactionLine";
 import CustomerCartLine from "./CustomerCartLine";
 import FarmerCreateProduct from "./FarmerCreateProduct";
@@ -33,7 +33,7 @@ export {
   AdminProduct,
   CustomerComment,
   AdminCart,
-  CustomerTransaction,
+  AdminTransaction,
   CustomerTransactionLine,
   CustomerCartLine,
   FarmerCreateProduct,

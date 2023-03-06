@@ -11,7 +11,7 @@ import {
   AdminProduct,
   CustomerComment,
   AdminCart,
-  CustomerTransaction,
+  AdminTransaction,
   CustomerTransactionLine,
   CustomerCartLine,
   FarmerCreateProduct,
@@ -80,7 +80,7 @@ export function Router() {
     },
     {
       path: "dashboard/transactions",
-      element: <CustomerTransaction />,
+      element: <AdminTransaction />,
     },
     {
       path: "dashboard/transaction-line",
