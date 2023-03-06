@@ -1,6 +1,9 @@
-import * as React from "react";
-import { DashboardLayout, Datatable } from "@/component";
-import { useGetProductsQuery } from "@/state/api/reducer";
+import { DashboardLayout, Datatable, Button } from "@/component";
+import { useNavigate } from "react-router-dom";
+import {
+  useGetProductsQuery,
+  useDeleteProductsMutation,
+} from "@/state/api/reducer";
 
 function AdminProduct() {
   const headers = ["ID", "Name", "Description", "Price", "Farmer"];
@@ -27,7 +30,9 @@ function AdminProduct() {
 
   const getProducts = useGetProductsQuery();
 
-  const handleDelete = (_id) => {};
+  const handleDelete = (id) => {
+    deleteProduct(id);
+  };
 
   const handleEdit = (_id) => {};
 
@@ -42,12 +47,19 @@ function AdminProduct() {
     },
   ];
 
-  if (getProducts.isLoading) {
+  if (getProducts.isLoading || deleteProductMutation.isLoading) {
     return <div>Loading...</div>;
   }
+
   return (
     <>
       <DashboardLayout>
+        <Button
+          title="Add Product"
+          onClick={() => {
+            navigate("/dashboard/products/create");
+          }}
+        />
         <Datatable
           headers={headers}
           keys={keys}
