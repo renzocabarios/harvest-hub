@@ -10,7 +10,7 @@ import {
   FarmerProfile,
   AdminProduct,
   CustomerComment,
-  CustomerCart,
+  AdminCart,
   CustomerTransaction,
   CustomerTransactionLine,
   CustomerCartLine,
@@ -76,7 +76,7 @@ export function Router() {
     },
     {
       path: "dashboard/carts",
-      element: <CustomerCart />,
+      element: <AdminCart />,
     },
     {
       path: "dashboard/transactions",

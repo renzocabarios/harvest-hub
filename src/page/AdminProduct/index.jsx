@@ -24,6 +24,7 @@ function AdminProduct() {
       operation: (value, row) => `${value} ${row.farmer.user.last_name}`,
     },
   ];
+
   const getProducts = useGetProductsQuery();
 
   const handleDelete = (_id) => {};

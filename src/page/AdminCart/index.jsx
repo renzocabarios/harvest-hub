@@ -1,42 +1,29 @@
 import * as React from "react";
-import { DashboardLayout, Datatable, Breadcrumb } from "@/component";
-import { useNavigate } from "react-router-dom";
+import { DashboardLayout, Datatable } from "@/component";
+import { useGetCartsQuery } from "@/state/api/reducer";
 
 export default function () {
-  const navigate = useNavigate();
-  const headers = ["ID", "Customer_id"];
-  const keys = ["_id", "Customer_id"];
+  const headers = ["ID", "Customer Name", "No. of Items"];
 
-  const [data, setData] = React.useState([
+  const keys = [
     {
-      _id: "_id_1",
-      Customer_id: "Customer_id",
+      key: "id",
     },
     {
-      _id: "_id_2",
-      Customer_id: "Customer_id",
+      key: "customer.user.first_name",
+      operation: (value, row) => `${value} ${row.customer.user.last_name}`,
     },
     {
-      _id: "_id_3",
-      Customer_id: "Customer_id",
+      key: "cart_lines",
+      operation: (value, row) => `${value.length}`,
     },
-    {
-      _id: "_id_4",
-      Customer_id: "Customer_id",
-    },
-    {
-      _id: "_id_5",
-      Customer_id: "Customer_id",
-    },
-  ]);
+  ];
 
-  const handleDelete = (_id) => {
-    setData(data.filter((item) => item._id !== _id));
-  };
+  const getCarts = useGetCartsQuery();
 
-  const handleEdit = (_id) => {
-    navigate(`/dashboard/cart-line/edit/${_id}`);
-  };
+  const handleDelete = (_id) => {};
+
+  const handleEdit = (_id) => {};
 
   const actions = [
     {
@@ -49,16 +36,18 @@ export default function () {
     },
   ];
 
+  if (getCarts.isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <DashboardLayout>
-        <Breadcrumb />
         <Datatable
           headers={headers}
           keys={keys}
           actions={actions}
-          hasActions={true}
-          data={data}
+          data={getCarts.data?.data}
         />
       </DashboardLayout>
     </>
