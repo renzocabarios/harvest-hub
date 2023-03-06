@@ -2,7 +2,7 @@ import * as React from "react";
 import { DashboardLayout, Datatable, Breadcrumb } from "@/component";
 import { useNavigate } from "react-router-dom";
 
-function CustomerCartLine() {
+export default function () {
   const navigate = useNavigate();
   const headers = ["ID", "Customer_id"];
   const keys = ["_id", "Customer_id"];
@@ -64,5 +64,3 @@ function CustomerCartLine() {
     </>
   );
 }
-
-export default CustomerCartLine;
