@@ -12,13 +12,15 @@ import AdminCart from "./AdminCart";
 import AdminTransaction from "./AdminTransaction";
 import CustomerTransactionLine from "./CustomerTransactionLine";
 import CustomerCartLine from "./CustomerCartLine";
-import FarmerCreateProduct from "./FarmerCreateProduct";
+import AdminCreateProduct from "./AdminCreateProduct";
 import CustomerCreateComment from "./CustomerCreateComment";
 import CustomerCreateCart from "./CustomerCreateCart";
 import CustomerCreateCartLine from "./CustomerCreateCartLine";
 import CustomerCreateTransaction from "./CustomerCreateTransaction";
 import CustomerCreateTransactionLine from "./CustomerCreateTransactionLine";
 import AdminAdmins from "./AdminAdmins";
+import FarmerProduct from "./FarmerProduct";
+import FarmerCreateProduct from "./FarmerCreateProduct";
 import CustomerHome from "./CustomerHome";
 export {
   CustomerHome,
@@ -37,10 +39,12 @@ export {
   AdminTransaction,
   CustomerTransactionLine,
   CustomerCartLine,
+  AdminCreateProduct,
   FarmerCreateProduct,
   CustomerCreateComment,
   CustomerCreateCart,
   CustomerCreateCartLine,
   CustomerCreateTransaction,
   CustomerCreateTransactionLine,
+  FarmerProduct,
 };
