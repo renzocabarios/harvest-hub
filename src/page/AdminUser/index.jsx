@@ -4,13 +4,28 @@ import { useGetUsersQuery } from "@/state/api/reducer";
 import { useNavigate } from "react-router-dom";
 import { useDeleteUserMutation } from "@/state/api/reducer";
 
-function AdminUser() {
+export default function () {
   const navigate = useNavigate();
   const [deleteUser, deleteUserMutation] = useDeleteUserMutation();
   const getUsersQuery = useGetUsersQuery();
 
-  const headers = ["ID", "First Name", "Last Name", "Email", "Type"];
-  const keys = ["id", "first_name", "last_name", "email", "type"];
+  const headers = ["ID", "Full Name", "Email", "Type"];
+
+  const keys = [
+    {
+      key: "id",
+    },
+    {
+      key: "first_name",
+      operation: (value, row) => `${value} ${row.last_name}`,
+    },
+    {
+      key: "email",
+    },
+    {
+      key: "type",
+    },
+  ];
 
   const handleDelete = (id) => {
     deleteUser(id);
@@ -54,5 +69,3 @@ function AdminUser() {
     </>
   );
 }
-
-export default AdminUser;
