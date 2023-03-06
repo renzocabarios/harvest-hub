@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DashboardLayout, Datatable, Breadcrumb, Button } from "@/component";
+import { DashboardLayout, Datatable, Button } from "@/component";
 import { useGetUsersQuery } from "@/state/api/reducer";
 import { useNavigate } from "react-router-dom";
 import { useDeleteUserMutation } from "@/state/api/reducer";
@@ -38,7 +38,6 @@ function AdminUser() {
   return (
     <>
       <DashboardLayout>
-        <Breadcrumb />
         <Button
           title="Add User"
           onClick={() => {
