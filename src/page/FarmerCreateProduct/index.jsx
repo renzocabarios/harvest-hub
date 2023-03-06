@@ -98,22 +98,28 @@ function FarmerCreateProduct() {
               />
             </Grid>
             <Grid item xs={12}>
-              <Select
-                id="farmer_id"
-                name="farmer_id"
+              <TextField
+                margin="normal"
+                required
                 fullWidth
+                id="type"
+                name="type"
+                label="Farmer"
+                variant="standard"
+                select
                 value={formik.values.farmer_id}
                 onChange={formik.handleChange}
-                label="Farmer"
+                error={
+                  formik.touched.farmer_id && Boolean(formik.errors.farmer_id)
+                }
+                helperText={formik.touched.farmer_id && formik.errors.farmer_id}
               >
-                {farmers?.data.map(
-                  ({ id, user: { first_name, last_name } }) => (
-                    <MenuItem key={id} value={id}>
-                      {`${first_name} ${last_name}`}
-                    </MenuItem>
-                  )
-                )}
-              </Select>
+                {farmers?.data.map((farmer) => (
+                  <MenuItem key={farmer.id} value={farmer.id}>
+                    {farmer.user.first_name} {farmer.user.last_name}
+                  </MenuItem>
+                ))}
+              </TextField>
             </Grid>
             <Grid item xs={12}>
               <Button
