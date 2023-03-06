@@ -8,21 +8,22 @@ import {
   Box,
   Button,
 } from "@mui/material";
-import { useAddProductMutation } from "@/state/api/reducer";
+import { useAddProductMutation, useGetFarmersQuery } from "@/state/api/reducer";
 import { useFormik } from "formik";
 import { createProductValidation } from "../../validation";
 import { useNavigate } from "react-router-dom";
 
-function AdminCreateProduct({ farmers }) {
+function AdminCreateProduct() {
   const navigate = useNavigate();
   const [addProduct, { data, isLoading, isSuccess }] = useAddProductMutation();
+  const { data: farmers } = useGetFarmersQuery();
 
   const formik = useFormik({
     initialValues: {
       name: "",
       description: "",
       price: "",
-      farmer_id: 1,
+      farmer_id: "",
     },
     validationSchema: createProductValidation,
     onSubmit: (values) => {
@@ -31,7 +32,7 @@ function AdminCreateProduct({ farmers }) {
       console.log(values);
     },
   });
-  console.log(farmers);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -97,16 +98,24 @@ function AdminCreateProduct({ farmers }) {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="farmer_id"
-                name="farmer_id"
-                select
-                label="Farmer"
+                margin="normal"
+                required
                 fullWidth
+                name="farmer_id"
+                label="Farmer"
+                variant="standard"
+                select
                 value={formik.values.farmer_id}
                 onChange={formik.handleChange}
-                helperText="Please select the farmer"
+                error={
+                  formik.touched.farmer_id && Boolean(formik.errors.farmer_id)
+                }
+                helperText={formik.touched.farmer_id && formik.errors.farmer_id}
               >
-                {farmers?.map((farmer) => (
+                <MenuItem disabled selected value="">
+                  Choose a Farmer
+                </MenuItem>
+                {farmers?.data.map((farmer) => (
                   <MenuItem key={farmer.id} value={farmer.id}>
                     {farmer.user.first_name} {farmer.user.last_name}
                   </MenuItem>
