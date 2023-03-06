@@ -2,19 +2,26 @@ import * as React from "react";
 import { DashboardLayout, Datatable } from "@/component";
 import { useGetCustomersQuery } from "@/state/api/reducer";
 
-function AdminCustomer() {
+export default function () {
   const getCustomers = useGetCustomersQuery();
 
-  const headers = ["ID", "First Name", "Last Name", "Email"];
-  const keys = ["id", "user.first_name", "user.last_name", "user.email"];
+  const headers = ["ID", "Full Name", "Email"];
+  const keys = [
+    {
+      key: "id",
+    },
+    {
+      key: "user.first_name",
+      operation: (value, row) => `${value} ${row.user.last_name}`,
+    },
+    {
+      key: "user.email",
+    },
+  ];
 
-  const handleDelete = (_id) => {
-    // setData(data.filter((item) => item._id !== _id));
-  };
+  const handleDelete = (_id) => {};
 
-  const handleEdit = (_id) => {
-    // navigate(`/dashboard/customers/edit/${_id}`);
-  };
+  const handleEdit = (_id) => {};
 
   const actions = [
     {
@@ -45,5 +52,3 @@ function AdminCustomer() {
     </>
   );
 }
-
-export default AdminCustomer;
