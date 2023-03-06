@@ -8,97 +8,102 @@ import {
   Box,
   Button,
 } from "@mui/material";
+import { useAddProductMutation } from "@/state/api/reducer";
+import { useFormik } from "formik";
+import { createProductValidation } from "../../validation";
 import { useNavigate } from "react-router-dom";
 
-function FarmerCreateProduct() {
+function FarmerCreateProduct({ farmers }) {
   const navigate = useNavigate();
+  const [addProduct, { data, isLoading, isSuccess }] = useAddProductMutation();
 
-  const productCreated = () => {
-    navigate(`/dashboard/products`);
-  };
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      description: "",
+      price: "",
+      farmer_id: 1,
+    },
+    validationSchema: createProductValidation,
+    onSubmit: (values) => {
+      addProduct(values);
+      navigate("/dashboard/products");
+      console.log(values);
+    },
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
       <DashboardLayout>
-        <Breadcrumb />
         <Typography variant="h6" gutterBottom>
           Create Product
         </Typography>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="Name"
-              name="Name"
-              label="Name"
-              fullWidth
-              autoComplete="given-name"
-              variant="standard"
-            />
+        <form onSubmit={formik.handleSubmit}>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <TextField
+                required
+                id="name"
+                name="name"
+                label="Name"
+                fullWidth
+                autoComplete="product name"
+                variant="standard"
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                error={formik.touched.name && Boolean(formik.errors.name)}
+                helperText={formik.touched.name && formik.errors.name}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                id="description"
+                name="description"
+                label="Description"
+                fullWidth
+                autoComplete="product description"
+                variant="standard"
+                value={formik.values.description}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.description &&
+                  Boolean(formik.errors.description)
+                }
+                helperText={
+                  formik.touched.description && formik.errors.description
+                }
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                id="price"
+                name="price"
+                label="Price"
+                fullWidth
+                autoComplete="price"
+                variant="standard"
+                type="number"
+                value={formik.values.price}
+                onChange={formik.handleChange}
+                error={formik.touched.price && Boolean(formik.errors.price)}
+                helperText={formik.touched.price && formik.errors.price}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+                <Button type="submit" variant="contained" sx={{ mt: 3, ml: 1 }}>
+                  Submit
+                </Button>
+              </Box>
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="Description"
-              name="Description"
-              label="Description"
-              fullWidth
-              autoComplete="family-name"
-              variant="standard"
-            />
-          </Grid>
-
-          <Grid item xs={12}>
-            <TextField
-              required
-              id="price"
-              name="price"
-              label="Price"
-              fullWidth
-              autoComplete="family-name"
-              variant="standard"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              required
-              id="stock"
-              name="stock"
-              label="Stock"
-              fullWidth
-              autoComplete="family-name"
-              variant="standard"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="Farmer_id"
-              label="Farmer"
-              variant="standard"
-              value="1"
-              select
-            >
-              <MenuItem value="1">John Doe</MenuItem>
-              <MenuItem value="2">Foo Bar</MenuItem>
-              <MenuItem value="3">Lorem Ipsum</MenuItem>
-            </TextField>
-          </Grid>
-
-          <Grid item xs={12}>
-            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <Button
-                onClick={productCreated}
-                variant="contained"
-                sx={{ mt: 3, ml: 1 }}
-              >
-                Submit
-              </Button>
-            </Box>
-          </Grid>
-        </Grid>
+        </form>
       </DashboardLayout>
     </>
   );
