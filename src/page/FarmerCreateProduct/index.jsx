@@ -102,8 +102,8 @@ function FarmerCreateProduct() {
                 margin="normal"
                 required
                 fullWidth
-                id="type"
-                name="type"
+                id="farmer_id"
+                name="farmer_id"
                 label="Farmer"
                 variant="standard"
                 select
@@ -114,8 +114,11 @@ function FarmerCreateProduct() {
                 }
                 helperText={formik.touched.farmer_id && formik.errors.farmer_id}
               >
+                <MenuItem disabled selected value="">
+                  Choose a Farmer
+                </MenuItem>
                 {farmers?.data.map((farmer) => (
-                  <MenuItem key={farmer.id} value={farmer.id}>
+                  <MenuItem key={farmer.id} value={`${farmer.id}`}>
                     {farmer.user.first_name} {farmer.user.last_name}
                   </MenuItem>
                 ))}
