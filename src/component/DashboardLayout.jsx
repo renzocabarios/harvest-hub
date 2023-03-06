@@ -56,19 +56,9 @@ function DashboardLayout(props) {
         icon: <ShoppingCartIcon />,
       },
       {
-        title: "Cart Line",
-        link: "/dashboard/cart-line",
-        icon: <ShoppingCartCheckoutIcon />,
-      },
-      {
         title: "Transaction",
         link: "/dashboard/transactions",
         icon: <PaidIcon />,
-      },
-      {
-        title: "Transaction Line",
-        link: "/dashboard/transaction-line",
-        icon: <ReceiptLongIcon />,
       },
       {
         title: "Charts",
