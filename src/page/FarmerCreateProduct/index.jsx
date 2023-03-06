@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DashboardLayout, Breadcrumb } from "@/component";
+import { UserLayout, Breadcrumb } from "@/component";
 import {
   MenuItem,
   TextField,
@@ -7,27 +7,29 @@ import {
   Grid,
   Box,
   Button,
+  Select,
 } from "@mui/material";
-import { useAddProductMutation } from "@/state/api/reducer";
+import { useAddProductMutation, useGetFarmersQuery } from "@/state/api/reducer";
 import { useFormik } from "formik";
 import { createProductValidation } from "../../validation";
 import { useNavigate } from "react-router-dom";
 
-function FarmerCreateProduct({ farmers }) {
+function FarmerCreateProduct() {
   const navigate = useNavigate();
   const [addProduct, { data, isLoading, isSuccess }] = useAddProductMutation();
+  const { data: farmers } = useGetFarmersQuery();
 
   const formik = useFormik({
     initialValues: {
       name: "",
       description: "",
       price: "",
-      farmer_id: 1,
+      farmer_id: "",
     },
     validationSchema: createProductValidation,
     onSubmit: (values) => {
       addProduct(values);
-      navigate("/dashboard/products");
+      navigate("/farmer/products");
       console.log(values);
     },
   });
@@ -38,7 +40,7 @@ function FarmerCreateProduct({ farmers }) {
 
   return (
     <>
-      <DashboardLayout>
+      <UserLayout>
         <Typography variant="h6" gutterBottom>
           Create Product
         </Typography>
@@ -96,15 +98,36 @@ function FarmerCreateProduct({ farmers }) {
               />
             </Grid>
             <Grid item xs={12}>
-              <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                <Button type="submit" variant="contained" sx={{ mt: 3, ml: 1 }}>
-                  Submit
-                </Button>
-              </Box>
+              <Select
+                id="farmer_id"
+                name="farmer_id"
+                fullWidth
+                value={formik.values.farmer_id}
+                onChange={formik.handleChange}
+                label="Farmer"
+              >
+                {farmers?.data.map(
+                  ({ id, user: { first_name, last_name } }) => (
+                    <MenuItem key={id} value={id}>
+                      {`${first_name} ${last_name}`}
+                    </MenuItem>
+                  )
+                )}
+              </Select>
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                disabled={!formik.dirty || !formik.isValid}
+              >
+                Create
+              </Button>
             </Grid>
           </Grid>
         </form>
-      </DashboardLayout>
+      </UserLayout>
     </>
   );
 }
