@@ -6,21 +6,31 @@ import {
   useDeleteAdminsMutation,
 } from "@/state/api/reducer";
 
-function AdminAdmins() {
+export default function () {
   const navigate = useNavigate();
   const getAdmins = useGetAdminsQuery();
   const [deleteAdmins, deleteAdminsMutation] = useDeleteAdminsMutation();
 
-  const headers = ["ID", "First Name", "Last Name", "Email"];
-  const keys = ["id", "user.first_name", "user.last_name", "user.email"];
+  const headers = ["ID", "Full Name", "Email"];
+
+  const keys = [
+    {
+      key: "id",
+    },
+    {
+      key: "user.first_name",
+      operation: (value, row) => `${value} ${row.user.last_name}`,
+    },
+    {
+      key: "user.email",
+    },
+  ];
 
   const handleDelete = (id) => {
     deleteAdmins(id);
   };
 
-  const handleEdit = (_id) => {
-    // navigate(`/dashboard/users/edit/${_id}`);
-  };
+  const handleEdit = (_id) => {};
 
   const actions = [
     {
@@ -55,5 +65,3 @@ function AdminAdmins() {
     </>
   );
 }
-
-export default AdminAdmins;
