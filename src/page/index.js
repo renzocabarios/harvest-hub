@@ -19,8 +19,9 @@ import CustomerCreateCartLine from "./CustomerCreateCartLine";
 import CustomerCreateTransaction from "./CustomerCreateTransaction";
 import CustomerCreateTransactionLine from "./CustomerCreateTransactionLine";
 import AdminAdmins from "./AdminAdmins";
-
+import CustomerHome from "./CustomerHome";
 export {
+  CustomerHome,
   AdminAdmins,
   FarmerProfile,
   Login,

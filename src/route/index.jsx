@@ -21,10 +21,15 @@ import {
   CustomerCreateTransaction,
   CustomerCreateTransactionLine,
   AdminAdmins,
+  CustomerHome,
 } from "@/page";
 
 export function Router() {
   return useRoutes([
+    {
+      path: "/home",
+      element: <CustomerHome />,
+    },
     {
       path: "/dashboard/admins",
       element: <AdminAdmins />,
