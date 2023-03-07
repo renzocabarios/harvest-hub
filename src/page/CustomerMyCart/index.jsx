@@ -1,12 +1,17 @@
 import * as React from "react";
 import { UserLayout, Datatable } from "@/component";
-import { useGetCartByIdQuery } from "@/state/api/reducer";
+import {
+  useGetCartByIdQuery,
+  useDeleteCartLineMutation,
+} from "@/state/api/reducer";
 import { Button, Box } from "@mui/material";
 
 export default function () {
   // cart_id is hardcoded for now
   const cart_id = 1;
   const getCartById = useGetCartByIdQuery(cart_id);
+
+  const [deleteCartLine, deleteCartLineMutation] = useDeleteCartLineMutation();
 
   const headers = ["Quantity", "Product", "Price", "Description", "Farmer"];
   const keys = [
@@ -30,7 +35,9 @@ export default function () {
     },
   ];
 
-  const handleDelete = () => {};
+  const handleDelete = (id) => {
+    deleteCartLine(id);
+  };
 
   const actions = [
     {
@@ -39,7 +46,7 @@ export default function () {
     },
   ];
 
-  if (getCartById.isLoading) {
+  if (getCartById.isLoading || deleteCartLineMutation.isLoading) {
     return <div>Loading...</div>;
   }
 
