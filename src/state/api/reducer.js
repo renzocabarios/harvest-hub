@@ -58,6 +58,9 @@ export const api = createApi({
       query: () => `product`,
       providesTags: ["Product"],
     }),
+    getProductById: builder.query({
+      query: (id) => `product/${id}`,
+    }),
     getCarts: builder.query({
       query: () => `cart`,
       providesTags: ["Cart"],
@@ -100,4 +103,5 @@ export const {
   useGetTransactionsQuery,
   useDeleteProductsMutation,
   useAddProductMutation,
+  useGetProductByIdQuery,
 } = api;
