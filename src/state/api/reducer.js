@@ -84,6 +84,13 @@ export const api = createApi({
       }),
       invalidatesTags: ["Admin", "Farmer", "User"],
     }),
+    addCartLine: builder.mutation({
+      query: (payload) => ({
+        url: "/cart-line",
+        method: "POST",
+        body: payload,
+      }),
+    }),
   }),
 });
 
@@ -103,5 +110,6 @@ export const {
   useGetTransactionsQuery,
   useDeleteProductsMutation,
   useAddProductMutation,
+  useAddCartLineMutation,
   useGetProductByIdQuery,
 } = api;
