@@ -91,6 +91,9 @@ export const api = createApi({
         body: payload,
       }),
     }),
+    getCartById: builder.query({
+      query: (id) => `cart/${id}`,
+    }),
   }),
 });
 
@@ -112,4 +115,5 @@ export const {
   useAddProductMutation,
   useAddCartLineMutation,
   useGetProductByIdQuery,
+  useGetCartByIdQuery,
 } = api;
