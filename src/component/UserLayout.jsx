@@ -37,7 +37,7 @@ function UserLayout(props) {
               >
                 Company name
               </Typography>
-              <nav>
+              {/* <nav>
                 <Link
                   variant="button"
                   color="text.primary"
@@ -65,11 +65,10 @@ function UserLayout(props) {
               </nav>
               <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
                 Login
-              </Button>
+              </Button> */}
             </Toolbar>
           </AppBar>
-
-          <Container sx={{ pt: 8, pb: 6 }}>{children}</Container>
+          <Box sx={{ p: 5 }}>{children}</Box>
         </Box>
       </Box>
     </>
