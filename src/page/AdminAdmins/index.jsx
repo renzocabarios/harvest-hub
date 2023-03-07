@@ -46,6 +46,7 @@ export default function () {
   if (getAdmins.isLoading || deleteAdminsMutation.isLoading) {
     return <div>Loading...</div>;
   }
+
   return (
     <>
       <DashboardLayout>
