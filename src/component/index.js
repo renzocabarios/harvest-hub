@@ -6,8 +6,11 @@ import Datatable from "./Datatable";
 import Breadcrumb from "./Breadcrumb";
 import UserLayout from "./UserLayout";
 import Button from "./Button";
-
+import Card from "./Card";
+import CardLayout from "./CardLayout";
 export {
+  CardLayout,
+  Card,
   Button,
   UserLayout,
   Breadcrumb,
