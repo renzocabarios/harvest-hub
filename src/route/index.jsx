@@ -25,7 +25,7 @@ import {
   AdminCreateProduct,
   CustomerHome,
   ProductDetail,
-  CustomerCartView,
+  CustomerMyCart,
 } from "@/page";
 
 export function Router() {
@@ -136,8 +136,8 @@ export function Router() {
       element: <FarmerCreateProduct />,
     },
     {
-      path: "/customer/cart-view",
-      element: <CustomerCartView />,
+      path: "/my-cart",
+      element: <CustomerMyCart />,
     },
   ]);
 }
