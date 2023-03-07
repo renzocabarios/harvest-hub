@@ -24,6 +24,8 @@ import FarmerCreateProduct from "./FarmerCreateProduct";
 import CustomerHome from "./CustomerHome";
 import ProductDetail from "./ProductDetail";
 
+import CustomerCartView from "./CustomerCartView";
+
 export {
   ProductDetail,
   CustomerHome,
@@ -50,4 +52,5 @@ export {
   CustomerCreateTransaction,
   CustomerCreateTransactionLine,
   FarmerProduct,
+  CustomerCartView,
 };
