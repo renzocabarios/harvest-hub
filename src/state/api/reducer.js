@@ -66,6 +66,21 @@ export const api = createApi({
       query: () => `transaction`,
       providesTags: ["Transaction"],
     }),
+    addProduct: builder.mutation({
+      query: (payload) => ({
+        url: "/product",
+        method: "POST",
+        body: payload,
+      }),
+      invalidatesTags: ["Admin", "Farmer", "User"],
+    }),
+    deleteProducts: builder.mutation({
+      query: (id) => ({
+        url: `/product/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Admin", "Farmer", "User"],
+    }),
   }),
 });
 
@@ -83,4 +98,6 @@ export const {
   useGetProductsQuery,
   useGetCartsQuery,
   useGetTransactionsQuery,
+  useDeleteProductsMutation,
+  useAddProductMutation,
 } = api;

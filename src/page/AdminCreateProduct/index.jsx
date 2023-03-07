@@ -1,5 +1,5 @@
 import * as React from "react";
-import { UserLayout, Breadcrumb } from "@/component";
+import { DashboardLayout, Breadcrumb } from "@/component";
 import {
   MenuItem,
   TextField,
@@ -7,14 +7,13 @@ import {
   Grid,
   Box,
   Button,
-  Select,
 } from "@mui/material";
 import { useAddProductMutation, useGetFarmersQuery } from "@/state/api/reducer";
 import { useFormik } from "formik";
 import { createProductValidation } from "../../validation";
 import { useNavigate } from "react-router-dom";
 
-function FarmerCreateProduct() {
+function AdminCreateProduct() {
   const navigate = useNavigate();
   const [addProduct, { data, isLoading, isSuccess }] = useAddProductMutation();
   const { data: farmers } = useGetFarmersQuery();
@@ -29,7 +28,7 @@ function FarmerCreateProduct() {
     validationSchema: createProductValidation,
     onSubmit: (values) => {
       addProduct(values);
-      navigate("/farmer/products");
+      navigate("/dashboard/products");
       console.log(values);
     },
   });
@@ -40,7 +39,7 @@ function FarmerCreateProduct() {
 
   return (
     <>
-      <UserLayout>
+      <DashboardLayout>
         <Typography variant="h6" gutterBottom>
           Create Product
         </Typography>
@@ -102,7 +101,6 @@ function FarmerCreateProduct() {
                 margin="normal"
                 required
                 fullWidth
-                id="farmer_id"
                 name="farmer_id"
                 label="Farmer"
                 variant="standard"
@@ -118,27 +116,24 @@ function FarmerCreateProduct() {
                   Choose a Farmer
                 </MenuItem>
                 {farmers?.data.map((farmer) => (
-                  <MenuItem key={farmer.id} value={`${farmer.id}`}>
+                  <MenuItem key={farmer.id} value={farmer.id}>
                     {farmer.user.first_name} {farmer.user.last_name}
                   </MenuItem>
                 ))}
               </TextField>
             </Grid>
             <Grid item xs={12}>
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                disabled={!formik.dirty || !formik.isValid}
-              >
-                Create
-              </Button>
+              <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+                <Button type="submit" variant="contained" sx={{ mt: 3, ml: 1 }}>
+                  Submit
+                </Button>
+              </Box>
             </Grid>
           </Grid>
         </form>
-      </UserLayout>
+      </DashboardLayout>
     </>
   );
 }
 
-export default FarmerCreateProduct;
+export default AdminCreateProduct;

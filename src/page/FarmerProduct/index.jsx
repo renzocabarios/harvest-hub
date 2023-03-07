@@ -1,4 +1,4 @@
-import { DashboardLayout, Datatable, Button } from "@/component";
+import { UserLayout, Datatable, Button } from "@/component";
 import { useNavigate } from "react-router-dom";
 import {
   useGetProductsQuery,
@@ -24,9 +24,12 @@ function AdminProduct() {
     },
     {
       key: "farmer.user.first_name",
-      operation: (value, row) => `${value} ${row.farmer.user.last_name}`,
+      operation: (value, row) => `${value} ${row.farmer.user.last_name} `,
     },
   ];
+
+  const navigate = useNavigate();
+  const [deleteProduct, deleteProductMutation] = useDeleteProductsMutation();
 
   const getProducts = useGetProductsQuery();
 
@@ -53,11 +56,11 @@ function AdminProduct() {
 
   return (
     <>
-      <DashboardLayout>
+      <UserLayout>
         <Button
           title="Add Product"
           onClick={() => {
-            navigate("/dashboard/products/create");
+            navigate("/farmer/products/create");
           }}
         />
         <Datatable
@@ -66,7 +69,7 @@ function AdminProduct() {
           actions={actions}
           data={getProducts.data?.data}
         />
-      </DashboardLayout>
+      </UserLayout>
     </>
   );
 }
