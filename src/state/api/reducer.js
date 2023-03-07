@@ -12,6 +12,7 @@ export const api = createApi({
     "Product",
     "Cart",
     "Transaction",
+    "CartLine",
   ],
   endpoints: (builder) => ({
     getUsers: builder.query({
@@ -93,6 +94,14 @@ export const api = createApi({
     }),
     getCartById: builder.query({
       query: (id) => `cart/${id}`,
+      providesTags: ["Cart"],
+    }),
+    deleteCartLine: builder.mutation({
+      query: (id) => ({
+        url: `/cart-line/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Cart"],
     }),
   }),
 });
@@ -116,4 +125,5 @@ export const {
   useAddCartLineMutation,
   useGetProductByIdQuery,
   useGetCartByIdQuery,
+  useDeleteCartLineMutation,
 } = api;
