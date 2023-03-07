@@ -10,7 +10,12 @@ export default function (props) {
         {data.map((e) => {
           return (
             <Grid item key={generateKey(5)} xs={12} sm={6} md={2}>
-              <Card name={e.name} price={e.price} description={e.description} />
+              <Card
+                id={e.id}
+                name={e.name}
+                price={e.price}
+                description={e.description}
+              />
             </Grid>
           );
         })}
