@@ -1,8 +1,6 @@
 import * as React from "react";
 import { UserLayout, CardLayout } from "@/component";
-import Grid from "@mui/material/Grid";
 import { useGetProductsQuery } from "@/state/api/reducer";
-import { generateKey } from "@/services/generateKey";
 
 export default function () {
   const getProducts = useGetProductsQuery();
