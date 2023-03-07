@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import Button from "./Button";
 
 export default function (props) {
-  const { name, price, description } = props;
+  const { name, price, description, onAddToCart } = props;
   return (
     <>
       <Box
@@ -51,7 +51,7 @@ export default function (props) {
             gap: 4,
           }}
         >
-          <Button title="Add to Cart" />
+          <Button title="Add to Cart" onClick={onAddToCart} />
         </Box>
       </Box>
     </>
