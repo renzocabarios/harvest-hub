@@ -6,12 +6,21 @@ import {
   CardMedia,
   CardContent,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function (props) {
-  const { name = "", price = 0, description = "" } = props;
+  const { id = 0, name = "", price = 0, description = "" } = props;
+
+  const navigate = useNavigate();
+
   return (
     <>
-      <Card sx={{ maxWidth: 500 }}>
+      <Card
+        sx={{ maxWidth: 500 }}
+        onClick={() => {
+          navigate(`/product/${id}`);
+        }}
+      >
         <CardActionArea>
           <CardMedia
             component="img"
