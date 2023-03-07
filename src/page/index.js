@@ -22,7 +22,10 @@ import AdminAdmins from "./AdminAdmins";
 import FarmerProduct from "./FarmerProduct";
 import FarmerCreateProduct from "./FarmerCreateProduct";
 import CustomerHome from "./CustomerHome";
+import ProductDetail from "./ProductDetail";
+
 export {
+  ProductDetail,
   CustomerHome,
   AdminAdmins,
   FarmerProfile,

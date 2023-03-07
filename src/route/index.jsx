@@ -24,10 +24,15 @@ import {
   FarmerProduct,
   AdminCreateProduct,
   CustomerHome,
+  ProductDetail,
 } from "@/page";
 
 export function Router() {
   return useRoutes([
+    {
+      path: "/product/:id",
+      element: <ProductDetail />,
+    },
     {
       path: "/home",
       element: <CustomerHome />,
