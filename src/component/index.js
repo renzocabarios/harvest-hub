@@ -8,6 +8,7 @@ import UserLayout from "./UserLayout";
 import Button from "./Button";
 import Card from "./Card";
 import CardLayout from "./CardLayout";
+import Carttable from "./Carttable";
 import ProductDetailLayout from "./ProductDetailLayout";
 import ProductDetails from "./ProductDetails";
 import ProductImage from "./ProductImage";
@@ -26,4 +27,5 @@ export {
   Sidenav,
   DashboardLayout,
   ListItem,
+  Carttable,
 };

@@ -5,7 +5,7 @@ import {
   useDeleteProductsMutation,
 } from "@/state/api/reducer";
 
-function AdminProduct() {
+function FarmerProduct() {
   const headers = ["ID", "Name", "Description", "Price", "Farmer"];
 
   const keys = [
@@ -74,4 +74,4 @@ function AdminProduct() {
   );
 }
 
-export default AdminProduct;
+export default FarmerProduct;
