@@ -8,7 +8,14 @@ import UserLayout from "./UserLayout";
 import Button from "./Button";
 import Card from "./Card";
 import CardLayout from "./CardLayout";
+import ProductDetailLayout from "./ProductDetailLayout";
+import ProductDetails from "./ProductDetails";
+import ProductImage from "./ProductImage";
+
 export {
+  ProductImage,
+  ProductDetails,
+  ProductDetailLayout,
   CardLayout,
   Card,
   Button,
