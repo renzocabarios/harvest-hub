@@ -104,6 +104,14 @@ export const api = createApi({
       }),
       invalidatesTags: ["Cart"],
     }),
+    checkoutMyCart: builder.mutation({
+      query: (payload) => ({
+        url: `/transaction/checkout`,
+        method: "POST",
+        body: payload,
+      }),
+      invalidatesTags: ["Cart"],
+    }),
   }),
 });
 
@@ -127,4 +135,5 @@ export const {
   useGetProductByIdQuery,
   useGetCartByIdQuery,
   useDeleteCartLineMutation,
+  useCheckoutMyCartMutation,
 } = api;
