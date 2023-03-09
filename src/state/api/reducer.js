@@ -91,6 +91,7 @@ export const api = createApi({
         method: "POST",
         body: payload,
       }),
+      invalidatesTags: ["Cart"],
     }),
     getCartById: builder.query({
       query: (id) => `cart/${id}`,
