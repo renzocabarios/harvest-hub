@@ -3,6 +3,7 @@ import { UserLayout, Datatable } from "@/component";
 import {
   useGetCartByIdQuery,
   useDeleteCartLineMutation,
+  useCheckoutMyCartMutation,
 } from "@/state/api/reducer";
 import { Button, Box } from "@mui/material";
 
@@ -12,6 +13,7 @@ export default function () {
   const getCartById = useGetCartByIdQuery(cart_id);
 
   const [deleteCartLine, deleteCartLineMutation] = useDeleteCartLineMutation();
+  const [checkoutMyCart, checkoutMyCartMutation] = useCheckoutMyCartMutation();
 
   const headers = ["Quantity", "Product", "Price", "Description", "Farmer"];
   const keys = [
@@ -46,7 +48,11 @@ export default function () {
     },
   ];
 
-  if (getCartById.isLoading || deleteCartLineMutation.isLoading) {
+  if (
+    getCartById.isLoading ||
+    deleteCartLineMutation.isLoading ||
+    checkoutMyCartMutation.isLoading
+  ) {
     return <div>Loading...</div>;
   }
 
@@ -60,7 +66,13 @@ export default function () {
           data={getCartById.data?.data[0].cart_lines}
         />
         <Box sx={{ display: "flex", justifyContent: "end" }}>
-          <Button variant="contained" sx={{ mt: 3 }}>
+          <Button
+            variant="contained"
+            sx={{ mt: 3 }}
+            onClick={() => {
+              checkoutMyCart({ cart_id });
+            }}
+          >
             Checkout
           </Button>
         </Box>
