@@ -112,6 +112,9 @@ export const api = createApi({
       }),
       invalidatesTags: ["Cart"],
     }),
+    getTransactionsByCustomer: builder.query({
+      query: (id) => `transaction/customer/${id}`,
+    }),
   }),
 });
 
@@ -136,4 +139,5 @@ export const {
   useGetCartByIdQuery,
   useDeleteCartLineMutation,
   useCheckoutMyCartMutation,
+  useGetTransactionsByCustomerQuery,
 } = api;
