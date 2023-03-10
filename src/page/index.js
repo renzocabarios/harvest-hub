@@ -25,7 +25,10 @@ import CustomerHome from "./CustomerHome";
 import ProductDetail from "./ProductDetail";
 import CustomerMyCart from "./CustomerMyCart";
 import AdminCartDetails from "./AdminCartDetails";
+import CustomerMyTransactions from "./CustomerMyTransactions";
+
 export {
+  CustomerMyTransactions,
   AdminCartDetails,
   ProductDetail,
   CustomerHome,
