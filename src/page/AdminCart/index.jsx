@@ -1,8 +1,11 @@
 import * as React from "react";
 import { DashboardLayout, Datatable } from "@/component";
 import { useGetCartsQuery } from "@/state/api/reducer";
+import { useNavigate } from "react-router-dom";
 
 export default function () {
+  const navigate = useNavigate();
+
   const headers = ["ID", "Customer Name", "No. of Items"];
 
   const keys = [
@@ -25,6 +28,10 @@ export default function () {
 
   const handleEdit = (_id) => {};
 
+  const handleView = (_id) => {
+    navigate(`/dashboard/carts/${_id}`);
+  };
+
   const actions = [
     {
       onClick: handleEdit,
@@ -33,6 +40,10 @@ export default function () {
     {
       onClick: handleDelete,
       title: "Delete",
+    },
+    {
+      onClick: handleView,
+      title: "View",
     },
   ];
 
