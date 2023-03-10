@@ -24,8 +24,9 @@ import FarmerCreateProduct from "./FarmerCreateProduct";
 import CustomerHome from "./CustomerHome";
 import ProductDetail from "./ProductDetail";
 import CustomerMyCart from "./CustomerMyCart";
-
+import AdminCartDetails from "./AdminCartDetails";
 export {
+  AdminCartDetails,
   ProductDetail,
   CustomerHome,
   AdminAdmins,

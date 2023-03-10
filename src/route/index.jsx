@@ -26,10 +26,15 @@ import {
   CustomerHome,
   ProductDetail,
   CustomerMyCart,
+  AdminCartDetails,
 } from "@/page";
 
 export function Router() {
   return useRoutes([
+    {
+      path: "/dashboard/carts/:id",
+      element: <AdminCartDetails />,
+    },
     {
       path: "/product/:id",
       element: <ProductDetail />,
