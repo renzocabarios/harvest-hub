@@ -35,6 +35,14 @@ export default function (props) {
   const { headers = [], data = [], keys = [], actions = [] } = props;
 
   const hasActions = actions.length > 0;
+  if (data.length == 0) {
+    return (
+      <>
+        <h1>No Data</h1>
+      </>
+    );
+  }
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
