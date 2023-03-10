@@ -54,6 +54,17 @@ function UserLayout(props) {
                 >
                   My Cart
                 </Typography>
+                <Typography
+                  variant="h6"
+                  color="inherit"
+                  noWrap
+                  sx={{ my: 1, mx: 1.5 }}
+                  onClick={() => {
+                    navigate("/my-transactions");
+                  }}
+                >
+                  Transactions
+                </Typography>
                 {/* <Link
                   variant="button"
                   color="text.primary"
