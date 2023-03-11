@@ -12,15 +12,28 @@ import {
 import { Box } from "@mui/system";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import RegisterImg from "@/assets/register.png";
+import { useAddUserMutation } from "@/state/api/reducer";
+import { useFormik } from "formik";
+import { createUserValidation } from "@/validation";
 
 function Register() {
   const navigate = useNavigate();
-  const [firstName, setFirstName] = useState(""),
-    [lastName, setLastName] = useState(""),
-    [type, setType] = useState(""),
-    [email, setEmail] = useState(""),
-    [password, setPassword] = useState(""),
-    [showPassword, setShowPassword] = useState(false);
+  const [addUser, addUserMutation] = useAddUserMutation();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const formik = useFormik({
+    initialValues: {
+      first_name: "",
+      last_name: "",
+      email: "",
+      type: "",
+      password: "",
+    },
+    validationSchema: createUserValidation,
+    onSubmit: (values) => {
+      addUser(values);
+    },
+  });
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -30,14 +43,13 @@ function Register() {
     event.preventDefault();
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    navigate(`/login`);
-  };
-
   const handleLogin = () => {
     navigate(`/login`);
   };
+
+  if (addUserMutation.isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Container sx={{ mt: 7.5, mb: 5 }} disableGutters>
@@ -64,68 +76,79 @@ function Register() {
           <Typography variant="h5" align="center">
             Get us some of your information to get a free access to our website.
           </Typography>
-          <form onSubmit={handleSubmit} sx={{ height: "100%" }}>
+          <form onSubmit={formik.handleSubmit} sx={{ height: "100%" }}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="firstName"
+              id="first_name"
               label="First Name"
-              name="firstName"
-              autoComplete="given-name"
+              name="first_name"
+              autoComplete="first name"
               autoFocus
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              value={formik.values.first_name}
+              onChange={formik.handleChange}
+              error={
+                formik.touched.first_name && Boolean(formik.errors.first_name)
+              }
+              helperText={formik.touched.first_name && formik.errors.first_name}
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              id="lastName"
+              id="last_name"
               label="Last Name"
-              name="lastName"
-              autoComplete="given-name"
+              name="last_name"
+              autoComplete="last name"
               autoFocus
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              value={formik.values.last_name}
+              onChange={formik.handleChange}
+              error={
+                formik.touched.last_name && Boolean(formik.errors.last_name)
+              }
+              helperText={formik.touched.last_name && formik.errors.last_name}
             />
             <TextField
               margin="normal"
               required
               fullWidth
               id="type"
-              label="Account Type"
               name="type"
+              label="Account Type"
               select
-              value={type}
-              onChange={(e) => setType(e.target.value)}
+              value={formik.values.type}
+              onChange={formik.handleChange}
+              error={formik.touched.type && Boolean(formik.errors.type)}
+              helperText={formik.touched.type && formik.errors.type}
             >
-              <MenuItem value="admin">Admin</MenuItem>
               <MenuItem value="farmer">Farmer</MenuItem>
-              <MenuItem value="customer">Customer</MenuItem>
+              <MenuItem value="Customer">Customer</MenuItem>
             </TextField>
             <TextField
               margin="normal"
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Email"
               name="email"
               autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
             />
             <TextField
-              margin="normal"
-              required
-              fullWidth
+              id="password"
               name="password"
               label="Password"
+              fullWidth
               type={showPassword ? "text" : "password"}
-              id="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="secret password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -139,6 +162,7 @@ function Register() {
                 ),
               }}
             />
+
             <Button
               type="submit"
               fullWidth
