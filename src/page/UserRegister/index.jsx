@@ -16,7 +16,7 @@ import { useAddUserMutation } from "@/state/api/reducer";
 import { useFormik } from "formik";
 import { createUserValidation } from "@/validation";
 
-function Register() {
+export default function () {
   const navigate = useNavigate();
   const [addUser, addUserMutation] = useAddUserMutation();
   const [showPassword, setShowPassword] = useState(false);
@@ -222,5 +222,3 @@ function Register() {
     </Container>
   );
 }
-
-export default Register;
