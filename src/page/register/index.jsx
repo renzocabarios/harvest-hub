@@ -12,7 +12,6 @@ import {
 import { Box } from "@mui/system";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import RegisterImg from "@/assets/register.png";
-import "./style.css";
 
 function Register() {
   const navigate = useNavigate();
