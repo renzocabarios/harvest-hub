@@ -1,7 +1,7 @@
 import { useRoutes, Navigate } from "react-router-dom";
 import {
   Login,
-  Register,
+  UserRegister,
   Admin,
   AdminUser,
   AdminCustomer,
@@ -62,7 +62,7 @@ export function Router() {
     },
     {
       path: "/register",
-      element: <Register />,
+      element: <UserRegister />,
     },
 
     {

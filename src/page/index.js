@@ -1,5 +1,5 @@
 import Login from "./login";
-import Register from "./register";
+import UserRegister from "./UserRegister";
 import Admin from "./admin";
 import AdminUser from "./AdminUser";
 import AdminCustomer from "./AdminCustomer";
@@ -35,7 +35,7 @@ export {
   AdminAdmins,
   FarmerProfile,
   Login,
-  Register,
+  UserRegister,
   Admin,
   AdminUser,
   AdminCustomer,
