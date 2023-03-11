@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DashboardLayout, Breadcrumb } from "@/component";
+import { DashboardLayout } from "@/component";
 import {
   MenuItem,
   TextField,
@@ -29,7 +29,6 @@ function AdminCreateProduct() {
     onSubmit: (values) => {
       addProduct(values);
       navigate("/dashboard/products");
-      console.log(values);
     },
   });
 
