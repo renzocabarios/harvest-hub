@@ -13,13 +13,28 @@ import {
 import { Box } from "@mui/system";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import loginImg from "@/assets/login.png";
+import { useAuthenticateUserMutation } from "@/state/api/reducer";
+import { useFormik } from "formik";
+import { loginUser } from "@/validation";
 
 function Login() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState(""),
-    [password, setPassword] = useState(""),
-    [showPassword, setShowPassword] = useState(false),
+  const [showPassword, setShowPassword] = useState(false),
     [rememberMe, setRememberMe] = useState(false);
+
+  const [authenticateUser, authenticateUserMutation] =
+    useAuthenticateUserMutation();
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: loginUser,
+    onSubmit: async (values) => {
+      await authenticateUser(values).unwrap();
+    },
+  });
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -27,14 +42,6 @@ function Login() {
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
-  };
-
-  const handleSubmit = () => {
-    navigate(`/dashboard`);
-  };
-
-  const handleRegister = () => {
-    navigate(`/register`);
   };
 
   return (
@@ -56,7 +63,7 @@ function Login() {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            onSubmit={formik.handleSubmit}
             sx={{
               mt: 3,
               display: "flex",
@@ -71,24 +78,26 @@ function Login() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Email"
               name="email"
               autoComplete="email"
-              autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
             />
             <TextField
               margin="normal"
-              required
-              fullWidth
+              id="password"
               name="password"
               label="Password"
+              fullWidth
               type={showPassword ? "text" : "password"}
-              id="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="secret password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -124,7 +133,6 @@ function Login() {
               />
               <Button
                 type="button"
-                // onClick={handleForgotPassword}
                 variant="text"
                 color="error"
                 sx={{ alignSelf: "flex-start" }}
@@ -172,12 +180,7 @@ function Login() {
                 Not a member
               </Typography>
 
-              <Button
-                type="button"
-                onClick={handleRegister}
-                variant="text"
-                color="success"
-              >
+              <Button type="button" variant="text" color="success">
                 {
                   <span
                     style={{
