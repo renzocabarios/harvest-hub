@@ -115,6 +115,13 @@ export const api = createApi({
     getTransactionsByCustomer: builder.query({
       query: (id) => `transaction/customer/${id}`,
     }),
+    authenticateUser: builder.mutation({
+      query: (payload) => ({
+        url: `/auth`,
+        method: "POST",
+        body: payload,
+      }),
+    }),
   }),
 });
 
@@ -139,5 +146,6 @@ export const {
   useGetCartByIdQuery,
   useDeleteCartLineMutation,
   useCheckoutMyCartMutation,
+  useAuthenticateUserMutation,
   useGetTransactionsByCustomerQuery,
 } = api;
